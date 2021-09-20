@@ -15,14 +15,16 @@ public class playerController : MonoBehaviour
 
         // Reset moveDelta
         moveDelta = new Vector3(x, y, 0);
-
+        flip;
         // Swap sprite direction
         if(moveDelta.x > 0)
-        {   flip = false;
+        {
+            Player.flip = false;
         }else if (moveDelta.x < 0)
-        {   flip = true;
+        {
+            Player.flip = true;
         }
-
+        
         // Prevent Going inside colliders y
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y)
             , Mathf.Abs(moveDelta.y * Time.deltaTime)
