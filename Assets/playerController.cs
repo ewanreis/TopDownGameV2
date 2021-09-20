@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class playerController : MonoBehaviour
-{
-    private BoxCollider2D boxCollider;
+{   private BoxCollider2D boxCollider;
     private Vector3 moveDelta;
     private RaycastHit2D hit;
     private void Start()
@@ -13,17 +12,17 @@ public class playerController : MonoBehaviour
     private void FixedUpdate()
     {   float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
+
         // Reset moveDelta
         moveDelta = new Vector3(x, y, 0);
+
         // Swap sprite direction
         if(moveDelta.x > 0)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+        {   flip = false;
         }else if (moveDelta.x < 0)
-        {   transform.localScale = new Vector3(-1f, 1f, 1f);
+        {   flip = true;
         }
-        //transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
-        //transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
+
         // Prevent Going inside colliders y
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y)
             , Mathf.Abs(moveDelta.y * Time.deltaTime)
@@ -32,6 +31,7 @@ public class playerController : MonoBehaviour
         {   // Movement
             transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
         }
+        
         // Prevent Going inside colliders x
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.x)
             , Mathf.Abs(moveDelta.x * Time.deltaTime)
@@ -41,5 +41,4 @@ public class playerController : MonoBehaviour
             transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
         }
     }
-
 }

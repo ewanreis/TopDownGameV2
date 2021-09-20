@@ -1,5 +1,4 @@
 using UnityEngine;
-// Kappa
 public class cameraFollow : MonoBehaviour
 {   public Transform target;
     [Range(0.0f, 1.0f)]
@@ -12,13 +11,3 @@ public class cameraFollow : MonoBehaviour
     }
 
 } 
-
-/*public Transform target;
-    public float smoothSpeed = 12.5f;
-    public Vector3 offset;
-    private void LateUpdate()
-    {
-        Vector3 desired = target.position + offset;
-        Vector3 smoothed = Vector3.Lerp(transform.position, desired, smoothSpeed * Time.deltaTime);
-        transform.position = smoothed;
-    }*/ // Old Code
